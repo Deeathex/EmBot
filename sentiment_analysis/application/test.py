@@ -50,7 +50,7 @@ print(encoded_docs[0])
 #       chosen length of inputs. This is done by calling the pad_sequence method with a length of 200.
 #       All input sequences will have a length of 25.
 padded_sequence = pad_sequences(encoded_docs, maxlen=MAXLEN_SEQ)
-# print(padded_sequence[0])
+print(padded_sequence)
 
 embedding_vector_length = 32
 # model = Sequential()

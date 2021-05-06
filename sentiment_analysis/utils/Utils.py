@@ -1,6 +1,8 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 
+from sentiment_analysis.utils.constants import SENTENCE, EMOTION
+
 
 class Utils:
     def __init__(self):
@@ -11,8 +13,18 @@ class Utils:
         return pd.read_csv(path_to_csv, sep=separator)
 
     @staticmethod
-    def write_data_frame_to_csv(data_frame, csv_path):
-        data_frame.to_csv(r'' + csv_path, index=False, header=True)
+    def load_data_frame(path, separator=','):
+        dataframe = pd.read_csv(path, sep=separator)
+        dataframe.columns = [SENTENCE, EMOTION]
+        return dataframe
+
+    @staticmethod
+    def write_data_frame_to_parquet(data_frame, file_path):
+        data_frame.to_parquet(file_path, index=False)
+
+    @staticmethod
+    def write_data_frame_to_csv(data_frame, file_path):
+        data_frame.to_csv(r'' + file_path, index=False, header=True)
 
     @staticmethod
     def plot_data_distribution(data_frame):
