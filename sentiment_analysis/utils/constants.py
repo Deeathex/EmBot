@@ -13,3 +13,5 @@ SENTENCE = 'sentence'
 PROCESSED_SENTENCE = 'processed_sentence'
 EMOTION = 'emotion'
 LENGTH = 'length'
+
+CARER_DATASET = '../dataset/emotions_dataset'

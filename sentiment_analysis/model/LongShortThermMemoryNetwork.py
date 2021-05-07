@@ -10,8 +10,10 @@ from keras.utils import to_categorical
 from sentiment_analysis.nlp.NLPModule import NLPModule
 from sentiment_analysis.utils.constants import PROCESSED_SENTENCE
 
-EPOCHS = 25
-STEPS_PER_EPOCH = 20
+import time
+
+EPOCHS = 100
+STEPS_PER_EPOCH = 25
 BATCH_SIZE = 120
 VALIDATION_STEPS = 10
 
@@ -64,7 +66,7 @@ class LongShortThermMemoryNetwork(ArtificialNeuralNetwork):
         self._classifier.add(Bidirectional(LSTM(200, return_sequences=True)))
         self._classifier.add(Dropout(0.2))
         self._classifier.add(Bidirectional(LSTM(100, return_sequences=False)))
-        self._classifier.add(Dense(6, activation='softmax'))
+        self._classifier.add(Dense(units=6, activation='softmax'))
         self._classifier.compile(loss='categorical_crossentropy', optimizer='adam', metrics='accuracy')
 
     def _train_model(self):
@@ -81,4 +83,9 @@ class LongShortThermMemoryNetwork(ArtificialNeuralNetwork):
 
 
 lstm = LongShortThermMemoryNetwork()
-lstm.build()
+# lstm.build()
+start = time.time()
+lstm.train()
+done = time.time()
+elapsed = done - start
+print('Duration in seconds: ', elapsed)
