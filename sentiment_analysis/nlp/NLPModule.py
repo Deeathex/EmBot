@@ -8,6 +8,7 @@ from keras.preprocessing.text import Tokenizer
 
 from nltk.corpus import stopwords
 from nltk.stem.wordnet import WordNetLemmatizer
+from nltk.tokenize import RegexpTokenizer
 
 from sentiment_analysis.utils.Utils import Utils
 from sentiment_analysis.utils.constants import SENTENCE, PROCESSED_SENTENCE, EMOTION
@@ -58,8 +59,7 @@ class NLPModule:
             lambda x: " ".join(x.lower() for x in x.split()))
 
         print('Removing punctuation from sentences..')
-        dataframe[PROCESSED_SENTENCE] = dataframe[PROCESSED_SENTENCE].str.replace('[^\w\s]', '',
-                                                                                  regex=True)
+        dataframe[PROCESSED_SENTENCE] = dataframe[PROCESSED_SENTENCE].apply(lambda x: self.remove_punctuation(x))
 
         # print('Removing stopwords from sentences...')
         # stop = stopwords.words('english')
@@ -67,10 +67,11 @@ class NLPModule:
         #     lambda x: " ".join(x for x in x.split() if x not in stop))
 
         print('Expanding contractions from sentences..')
-        dataframe[PROCESSED_SENTENCE] = dataframe[PROCESSED_SENTENCE].apply(lambda x: self.__decontracted(x))
+        dataframe[PROCESSED_SENTENCE] = dataframe[PROCESSED_SENTENCE].apply(lambda x: self.decontracted(x))
 
         print('Performing lemmatization on sentences..')
-        dataframe[PROCESSED_SENTENCE] = dataframe[PROCESSED_SENTENCE].apply(lambda x: self.__lemmatize_sentence(x))
+        dataframe[PROCESSED_SENTENCE] = dataframe[PROCESSED_SENTENCE].apply(
+            lambda x: self.lemmatize_sentence(x, self.__lemmatizer))
 
         print('Performing tokenization on sentences..')
         self.__tokenizer.fit_on_texts(dataframe.sentence.values)
@@ -90,7 +91,8 @@ class NLPModule:
 
         return gensim_weight_matrix
 
-    def __lemmatize_sentence(self, sentence):
+    @staticmethod
+    def lemmatize_sentence(sentence, lemmatizer):
         # tokenize the sentence and find the POS tag for each token
         nltk_tagged = nltk.pos_tag(nltk.word_tokenize(sentence))
         # tuple of (token, wordnet_tag)
@@ -102,10 +104,11 @@ class NLPModule:
                 lemmatized_sentence.append(word)
             else:
                 # else use the tag to lemmatize the token
-                lemmatized_sentence.append(self.__lemmatizer.lemmatize(word, tag))
+                lemmatized_sentence.append(lemmatizer.lemmatize(word, tag))
         return " ".join(lemmatized_sentence)
 
-    def __decontracted(self, phrase):
+    @staticmethod
+    def decontracted(phrase):
         # specific
         phrase = re.sub(r"won\'t", "will not", phrase)
         phrase = re.sub(r"can\'t", "can not", phrase)
@@ -124,3 +127,9 @@ class NLPModule:
         phrase = re.sub(r"\'ve", " have", phrase)
         phrase = re.sub(r"\'m", " am", phrase)
         return phrase
+
+    @staticmethod
+    def remove_punctuation(sentence):
+        tokenizer = RegexpTokenizer(r'\w+')
+        tokens = tokenizer.tokenize(sentence)
+        return " ".join([word for word in tokens if word.isalnum()])

@@ -8,7 +8,7 @@ from keras.preprocessing.sequence import pad_sequences
 from keras.utils import to_categorical
 
 from sentiment_analysis.nlp.NLPModule import NLPModule
-from sentiment_analysis.utils.constants import PROCESSED_SENTENCE
+from sentiment_analysis.utils.constants import PROCESSED_SENTENCE, NUM_WORDS_VOCABULARY
 
 import time
 
@@ -22,7 +22,7 @@ class LongShortThermMemoryNetwork(ArtificialNeuralNetwork):
     def __init__(self, ):
         super().__init__()
         self.__embedding_dim = 100
-        self.nlp_module = NLPModule(10000, '../dataset/emotions_dataset')
+        self.nlp_module = NLPModule(NUM_WORDS_VOCABULARY, '../dataset/emotions_dataset')
 
         self.__X_train = None
         self.__y_train = None

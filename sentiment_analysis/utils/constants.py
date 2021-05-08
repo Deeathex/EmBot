@@ -15,3 +15,6 @@ EMOTION = 'emotion'
 LENGTH = 'length'
 
 CARER_DATASET = '../dataset/emotions_dataset'
+
+NUM_WORDS_VOCABULARY = 10000
+MAXLEN = 300
