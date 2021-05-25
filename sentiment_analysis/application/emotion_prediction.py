@@ -43,11 +43,3 @@ class EmotionClassifier:
 
 
 emotion_classifier = EmotionClassifier('../metrics/saved_model_2021-05-07_14-28-54.h5')
-emotion_classifier.predict('What a wonderful day!')
-emotion_classifier.predict('Today is a very beautiful day!')
-emotion_classifier.predict('I wish I was dead')
-emotion_classifier.predict('I want to die')
-emotion_classifier.predict('I am so stressed')
-emotion_classifier.predict('I want to cry')
-emotion_classifier.predict('Im so pathetic')
-emotion_classifier.predict('Im defeated by this situation')

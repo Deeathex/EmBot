@@ -38,12 +38,24 @@ class ActionScenariosWhenEmotionOccurs(Action):
 
     def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
         # get the latest message
-        print(tracker.latest_message)
+        # print(tracker.latest_message)
         # for blob in tracker.latest_message['entities']:
         #     print(tracker.latest_message)
         #     print(blob['entity'])
         #     print(blob['value'])
         #     print(blob)
         #     print('________')
-        dispatcher.utter_message(text="Hello World!")
+        # dispatcher.utter_message(text="Hello World!")
+        dispatcher.utter_message(text=tracker.latest_message)
+        return []
+
+
+class ActionFaciltySearch(Action):
+
+    def name(self) -> Text: return "action_facility_search"
+
+    def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+        facility = tracker.get_slot("facility_type")
+        address = "Galautas, Centru"
+        dispatcher.utter_message(text="Here is the address of the {}:{}".format(facility, address))
         return []

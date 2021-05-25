@@ -8,7 +8,14 @@ intents:
   - mood_great
   - mood_unhappy
   - bot_challenge
-  - custom_action
+  - perform_emotion_identification
+  - search_for_facility
+
+slots:
+  facility_type:
+    type: text
+    influence_conversation: false
+
 
 responses:
   utter_greet:
@@ -32,6 +39,7 @@ responses:
 
 actions:
   - action_scenarios_when_emotion_occurs
+  - action_facility_search
 
 session_config:
   session_expiration_time: 60

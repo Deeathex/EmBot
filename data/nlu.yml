@@ -117,6 +117,18 @@ nlu:
       - you're a bot aren't you?
       - are you even a real person?
 
-  - intent: custom_action
+  - intent: perform_emotion_identification
     examples: |
-      - custom action
+      - let's start the session
+      - I want to start the session
+      - start session
+      - begin session
+      - I would like to turn on the session
+      - turn on session
+      - I would really like to start the session
+
+  - intent: search_for_facility
+    examples: |
+      - I would like to know where is the hospital
+      - where is the closest pharmacy?
+      - where is the hospital?
