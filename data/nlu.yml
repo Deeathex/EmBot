@@ -63,6 +63,8 @@ nlu:
     examples: |
       - no
       - n
+      - idk
+      - I don't know
       - never
       - I don't think so
       - don't like that
@@ -117,7 +119,7 @@ nlu:
       - you're a bot aren't you?
       - are you even a real person?
 
-  - intent: perform_emotion_identification
+  - intent: start_CBT_session
     examples: |
       - let's start the session
       - I want to start the session
@@ -126,9 +128,13 @@ nlu:
       - I would like to turn on the session
       - turn on session
       - I would really like to start the session
+      - let's start the CBT session
+      - I want to start the CBT session
+      - start CBT session
+      - begin CBT session
 
-  - intent: search_for_facility
-    examples: |
-      - I would like to know where is the hospital
-      - where is the closest pharmacy?
-      - where is the hospital?
+#  - intent: search_for_facility
+#    examples: |
+#      - I would like to know where is the hospital
+#      - where is the closest pharmacy?
+#      - where is the hospital?

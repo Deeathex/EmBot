@@ -25,6 +25,7 @@
 #         dispatcher.utter_message(text="Hello World!")
 #
 #         return []
+import requests
 
 from typing import Any, Text, Dict, List
 
@@ -46,7 +47,13 @@ class ActionScenariosWhenEmotionOccurs(Action):
         #     print(blob)
         #     print('________')
         # dispatcher.utter_message(text="Hello World!")
-        dispatcher.utter_message(text=tracker.latest_message)
+        # print(str(tracker.latest_message))
+        text = str(tracker.latest_message['text'])
+        url = "http://127.0.0.1:5000/predictor?text=" + text
+        print(url)
+        response = requests.get(url)
+        print(response.status_code)
+        dispatcher.utter_message(str(response.json()))
         return []
 
 

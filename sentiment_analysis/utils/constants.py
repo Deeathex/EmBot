@@ -16,5 +16,11 @@ LENGTH = 'length'
 
 CARER_DATASET = '../dataset/emotions_dataset'
 
+# Model
+PATH_TO_MODEL = '../metrics/saved_model_2021-05-07_14-28-54.h5'
+
+# constants used in RASA framework
+RASA_PATH_TO_MODEL = '../sentiment_analysis/metrics/saved_model_2021-05-07_14-28-54.h5/saved_model_2021-05-07_14-28-54.h5'
+
 NUM_WORDS_VOCABULARY = 10000
 MAXLEN = 300

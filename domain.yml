@@ -8,8 +8,7 @@ intents:
   - mood_great
   - mood_unhappy
   - bot_challenge
-  - perform_emotion_identification
-  - search_for_facility
+  - start_CBT_session
 
 slots:
   facility_type:
@@ -19,27 +18,29 @@ slots:
 
 responses:
   utter_greet:
-  - text: "Hey! How are you?"
+    - text: "Hey! How are you?"
 
   utter_cheer_up:
-  - text: "Here is something to cheer you up:"
-    image: "https://i.imgur.com/nGF1K8f.jpg"
+    - text: "Here is something to cheer you up:"
+      image: "https://i.imgur.com/nGF1K8f.jpg"
 
   utter_did_that_help:
-  - text: "Did that help you?"
+    - text: "Did that help you?"
 
   utter_happy:
-  - text: "Great, carry on!"
+    - text: "Great, carry on!"
 
   utter_goodbye:
-  - text: "Bye"
+    - text: "Bye"
 
   utter_iamabot:
-  - text: "I am a bot, powered by Rasa."
+    - text: "I am a bot, powered by Rasa."
+
+  utter_how_did_you_feel_lately:
+    - text: "How did you feel lately?"
 
 actions:
   - action_scenarios_when_emotion_occurs
-  - action_facility_search
 
 session_config:
   session_expiration_time: 60

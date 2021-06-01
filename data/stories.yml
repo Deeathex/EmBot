@@ -29,17 +29,10 @@ stories:
       - intent: deny
       - action: utter_goodbye
 
-  - story: custom action 1
+  - story: custom action perform emotion identification
     steps:
       - intent: greet
       - action: utter_greet
-      - intent: perform_emotion_identification
+      - intent: start_CBT_session
+      - action: utter_how_did_you_feel_lately
       - action: action_scenarios_when_emotion_occurs
-
-  - story: search for facility
-    steps:
-      - intent: greet
-      - action: utter_greet
-      - intent: search_for_facility
-      - action: action_facility_search
-

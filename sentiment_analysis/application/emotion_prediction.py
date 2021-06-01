@@ -1,5 +1,3 @@
-import numpy as np
-
 from keras.models import load_model
 
 from keras.preprocessing.text import Tokenizer
