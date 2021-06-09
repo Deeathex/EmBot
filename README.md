@@ -15,3 +15,8 @@ Train the model:
 ```
 rasa train
 ```
+
+Run witn confidence of prediction:
+```
+rasa shell nlu
+```

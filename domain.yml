@@ -3,18 +3,18 @@ version: "2.0"
 intents:
   - greet
   - goodbye
-  - affirm
-  - deny
-  - mood_great
-  - mood_unhappy
-  - bot_challenge
-  - start_CBT_session
+  - add_feeling_message
+  - find_what_bot_thinks
+  - find_facility
 
 slots:
   facility_type:
     type: text
     influence_conversation: false
 
+  location:
+    type: text
+    influence_conversation: false
 
 responses:
   utter_greet:
@@ -40,7 +40,9 @@ responses:
     - text: "How did you feel lately?"
 
 actions:
-  - action_scenarios_when_emotion_occurs
+  - action_add_feeling_message
+  - action_check_mental_state_from_messages
+  - action_facility_search
 
 session_config:
   session_expiration_time: 60

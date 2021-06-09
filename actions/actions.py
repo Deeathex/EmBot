@@ -32,12 +32,17 @@ from typing import Any, Text, Dict, List
 from rasa_sdk import Action, Tracker
 from rasa_sdk.executor import CollectingDispatcher
 
+from random import randrange
 
-class ActionScenariosWhenEmotionOccurs(Action):
+cbt_messages = []
 
-    def name(self) -> Text: return "action_scenarios_when_emotion_occurs"
+
+class ActionAddFeeling(Action):
+
+    def name(self) -> Text: return "action_add_feeling_message"
 
     def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+        global cbt_messages
         # get the latest message
         # print(tracker.latest_message)
         # for blob in tracker.latest_message['entities']:
@@ -48,12 +53,33 @@ class ActionScenariosWhenEmotionOccurs(Action):
         #     print('________')
         # dispatcher.utter_message(text="Hello World!")
         # print(str(tracker.latest_message))
-        text = str(tracker.latest_message['text'])
-        url = "http://127.0.0.1:5000/predictor?text=" + text
-        print(url)
+        message = str(tracker.latest_message['text'])
+        cbt_messages.append(message)
+        return []
+
+
+class ActionCheckMentalStateFromMessages(Action):
+
+    def name(self) -> Text:
+        return "action_check_mental_state_from_messages"
+
+    def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+        global cbt_messages
+        responses = ['About what?', 'First, tell me something about you.',
+                     'To have an opinion, you first have to provide me some information about the context.']
+        if not cbt_messages:
+            position = randrange(len(responses))
+            dispatcher.utter_message(responses[position])
+            return []
+        text = ''
+        for message in cbt_messages:
+            text += message + '. '
+        url = "http://127.0.0.1:5000/prediction?text=" + text
         response = requests.get(url)
         print(response.status_code)
-        dispatcher.utter_message(str(response.json()))
+
+        cbt_messages = []
+        dispatcher.utter_message(str(response.json()['recommendation']))
         return []
 
 
@@ -63,6 +89,8 @@ class ActionFaciltySearch(Action):
 
     def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
         facility = tracker.get_slot("facility_type")
-        address = "Galautas, Centru"
-        dispatcher.utter_message(text="Here is the address of the {}:{}".format(facility, address))
+        url = "http://127.0.0.1:5000/facility?facility_type=" + facility
+        response = requests.get(url)
+
+        dispatcher.utter_message(str(response.json()["text"]))
         return []

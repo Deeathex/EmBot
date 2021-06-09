@@ -2,37 +2,30 @@ version: "2.0"
 
 stories:
 
-  - story: happy path
-    steps:
-      - intent: greet
-      - action: utter_greet
-      - intent: mood_great
-      - action: utter_happy
+  #  - story: sad path 1
+  #    steps:
+  #      - intent: greet
+  #      - action: utter_greet
+  #      - intent: mood_unhappy
+  #      - action: utter_cheer_up
+  #      - action: utter_did_that_help
+  #      - intent: affirm
+  #      - action: utter_happy
 
-  - story: sad path 1
-    steps:
-      - intent: greet
-      - action: utter_greet
-      - intent: mood_unhappy
-      - action: utter_cheer_up
-      - action: utter_did_that_help
-      - intent: affirm
-      - action: utter_happy
+#  - story: CBT session
+#    steps:
+#      - intent: greet
+#      - action: utter_greet
+#      - intent: add_feeling_message
+#      - action: action_add_feeling_message
+#      - intent: find_what_bot_thinks
+#      - action: action_check_mental_state_from_messages
 
-  - story: sad path 2
+  - story: search for facility
     steps:
       - intent: greet
       - action: utter_greet
-      - intent: mood_unhappy
-      - action: utter_cheer_up
-      - action: utter_did_that_help
-      - intent: deny
-      - action: utter_goodbye
+      - intent: find_facility
+      - action: action_facility_search
 
-  - story: custom action perform emotion identification
-    steps:
-      - intent: greet
-      - action: utter_greet
-      - intent: start_CBT_session
-      - action: utter_how_did_you_feel_lately
-      - action: action_scenarios_when_emotion_occurs
+
