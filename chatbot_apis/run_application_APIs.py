@@ -15,6 +15,7 @@ class Prediction(Resource):
         text = str(request.args.get('text'))
         recommendation_based_on_mental_status = RecommendationBasedOnMentalState()
         recommendation = recommendation_based_on_mental_status.get_recommendation(text)
+        print(recommendation)
         # return data and 200 OK code
         return recommendation, 200
 
@@ -24,6 +25,7 @@ class DuckDuckGo(Resource):
         query = request.args.get('query')
         ddg_query = DuckDuckGoQuery()
         data = ddg_query.search(query)
+        print(data)
         return data, 200
 
 
@@ -32,6 +34,7 @@ class FacilityFinder(Resource):
         facility_type = request.args.get('facility_type')
         facility_finder = NearbyFacilityFinder()
         data = facility_finder.run(facility_type)
+        print(data)
         return data, 200
 
 
@@ -39,6 +42,7 @@ class PostCancerPractices(Resource):
     def get(self):
         post_cancer_practices = Practices()
         data = post_cancer_practices.fetch()
+        print(data)
         return data, 200
 
 
