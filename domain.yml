@@ -7,6 +7,7 @@ intents:
   - find_what_bot_thinks
   - find_facility
   - query_search
+  - post_cancer_practices
 
 slots:
   facility_type:
@@ -49,6 +50,7 @@ actions:
   - action_check_mental_state_from_messages
   - action_facility_search
   - action_search_keyword
+  - action_post_cancer_practices
 
 session_config:
   session_expiration_time: 60

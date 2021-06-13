@@ -37,9 +37,8 @@ class FacilityFinder(Resource):
 
 class PostCancerPractices(Resource):
     def get(self):
-        cancer_type = request.args.get('cancer_type')
         post_cancer_practices = Practices()
-        data = post_cancer_practices.fetch(cancer_type)
+        data = post_cancer_practices.fetch()
         return data, 200
 
 

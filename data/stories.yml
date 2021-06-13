@@ -12,14 +12,14 @@ stories:
   #      - intent: affirm
   #      - action: utter_happy
 
-#  - story: CBT session
-#    steps:
-#      - intent: greet
-#      - action: utter_greet
-#      - intent: add_feeling_message
-#      - action: action_add_feeling_message
-#      - intent: find_what_bot_thinks
-#      - action: action_check_mental_state_from_messages
+  #  - story: CBT session
+  #    steps:
+  #      - intent: greet
+  #      - action: utter_greet
+  #      - intent: add_feeling_message
+  #      - action: action_add_feeling_message
+  #      - intent: find_what_bot_thinks
+  #      - action: action_check_mental_state_from_messages
 
   - story: search for facility
     steps:
@@ -30,10 +30,13 @@ stories:
 
   - story: search for facility
     steps:
-      - intent: greet
-      - action: utter_greet
       - intent: query_search
       - action: action_search_keyword
+
+  - story: post cancer practices
+    steps:
+      - intent: post_cancer_practices
+      - action: action_post_cancer_practices
 
 
 

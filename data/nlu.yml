@@ -70,6 +70,7 @@ nlu:
   - intent: find_what_bot_thinks
     examples: |
       - what do you think
+      - what to do?
       - what's your opinion
       - any opinion about this
       - any thoughts?
@@ -150,13 +151,42 @@ nlu:
       - search for [puppies](query)
       - search for [flower](query)
       - search for [Abraham Lincoln](query)
+      - search for [postcancer practices](query)
       - who is [Bill Gates](query)
       - who is [Leonardo di Caprio](query)
       - what is [pneumonia](query)
       - what is [depression](query)
       - what is a [flower](query)
       - what is an [airplane](query)
-      - how do [people fly](query)
+      - what are [postcancer practices](query)
+      - which are the best [postcancer practices](query)
+      - which are [the best fruits to eat when having cancer](query)
+      - which are [the best vegetables to eat when having cancer](query)
+      - what [food to eat when having cancer](query)
+      - what [exercises to do when having cancer](query)
       - how to [grow tomatoes in the garden](query)
       - how to [play the guitar](query)
       - how to [make a pizza](query)
+
+
+  - intent: post_cancer_practices
+    examples: |
+      - what changes I should think about making after cancer?
+      - what changes I should think about making after I found I have cancer?
+      - what should I change in my life after beating cancer?
+      - what should I change in my life after finding out I have cancer?
+      - what are the best postcancer practices?
+      - which are the best postcancer practices?
+      - any advise on postcancer practices?
+      - any advise on what to do if I found I have cancer?
+      - any recommendation for postcancer practices?
+      - any recommendation once I found I have cancer?
+      - what are the best post-cancer practices?
+      - which are the best post-cancer practices?
+      - any advise on post-cancer practices?
+      - any recommendation for post-cancer practices?
+      - what are the best post cancer practices?
+      - which are the best post cancer practices?
+      - any advise on post cancer practices?
+      - any recommendation for post cancer practices?
+

@@ -65,11 +65,10 @@ class ActionCheckMentalStateFromMessages(Action):
         for message in cbt_messages:
             text += message + '. '
         url = "http://127.0.0.1:5000/prediction?text=" + text
-        response = requests.get(url)
-        print(response.status_code)
+        response = requests.get(url).json()
 
         cbt_messages = []
-        dispatcher.utter_message(str(response.json()['recommendation']))
+        dispatcher.utter_message(str(response['recommendation']))
         return []
 
 
@@ -80,15 +79,16 @@ class ActionFaciltySearch(Action):
     def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
         facility = tracker.get_slot("facility_type")
         url = "http://127.0.0.1:5000/facility?facility_type=" + facility
-        response = requests.get(url)
+        response = requests.get(url).json()
 
-        dispatcher.utter_message(str(response.json()["text"]))
+        dispatcher.utter_message(str(response["text"]))
         return []
 
 
 class ActionSearchKeyword(Action):
 
-    def name(self) -> Text: return "action_search_keyword"
+    def name(self) -> Text:
+        return "action_search_keyword"
 
     def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
         query = tracker.get_slot("query")
@@ -112,4 +112,20 @@ class ActionSearchKeyword(Action):
         if link is not None and link != "":
             dispatcher.utter_message("Here's a link if you want to know more: " + str(link))
 
+        return []
+
+
+class ActionPostCancerPractices(Action):
+
+    def name(self) -> Text:
+        return "action_post_cancer_practices"
+
+    def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+        url = "http://127.0.0.1:5000/practices"
+        response = requests.get(url).json()
+
+        recommendation = response["recommendation"]
+        description = response["description"]
+
+        dispatcher.utter_message(recommendation + ': ' + description)
         return []

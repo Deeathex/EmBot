@@ -1,0 +1,20 @@
+{
+  "postcancer_practices": [
+    {
+      "recommendation": "Quit smoking",
+      "description": "Research shows that smoking can increase the chances of getting cancer at the same site or another site."
+    },
+    {
+      "recommendation": "Cut down on how much alcohol you drink",
+      "description": "Research shows that drinking alcohol increases your chances of getting certain types of cancers."
+    },
+    {
+      "recommendation": "Eat well",
+      "description": "Healthy food choices and physical activity may help reduce the risk of cancer or recurrence. sTalk with your doctor or a nutritionist to find out about any special dietary needs that you may have. The American Cancer Society and the American Institute for Cancer Research have developed similar diet and fitness guidelines that may help reduce the risk of cancer: Eat a plant-based diet and have at least 5–9 servings of fruit and vegetables daily. Try to include beans in your diet, and eat whole grains (such as cereals, breads, and pasta) several times daily. Choose foods low in fat and low in salt. Get to and stay at a healthy weight. For more tips on nutrition and healthy eating, go to www.aicr.organd click on “Cancer Survivors,” or go to www.cancer.org and click on “nutrition.”"
+    },
+    {
+      "recommendation": "Exercise and stay active",
+      "description": "Several recent reports suggest that staying active after cancer can help lower the risk of recurrence and can lead to longer survival. Moderate exercise (walking, biking, swimming) for about 30 minutes every—or almost every—day can reduce anxiety and depression, improve mood and boost self-esteem and reduce fatigue, nausea, pain, and diarrhea"
+    }
+  ]
+}
