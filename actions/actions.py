@@ -42,17 +42,7 @@ class ActionAddFeeling(Action):
     def name(self) -> Text: return "action_add_feeling_message"
 
     def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
-        global cbt_messages
-        # get the latest message
-        # print(tracker.latest_message)
-        # for blob in tracker.latest_message['entities']:
-        #     print(tracker.latest_message)
-        #     print(blob['entity'])
-        #     print(blob['value'])
-        #     print(blob)
-        #     print('________')
-        # dispatcher.utter_message(text="Hello World!")
-        # print(str(tracker.latest_message))
+        global cbt_message
         message = str(tracker.latest_message['text'])
         cbt_messages.append(message)
         return []
@@ -93,4 +83,33 @@ class ActionFaciltySearch(Action):
         response = requests.get(url)
 
         dispatcher.utter_message(str(response.json()["text"]))
+        return []
+
+
+class ActionSearchKeyword(Action):
+
+    def name(self) -> Text: return "action_search_keyword"
+
+    def run(self, dispatcher: CollectingDispatcher, tracker: Tracker, domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+        query = tracker.get_slot("query")
+        if query is None:
+            return []
+
+        url = "http://127.0.0.1:5000/search?query=" + query
+        response = requests.get(url).json()
+
+        text = response["text"]
+        image_link = response["image"]
+        link = response["recommendation"]
+
+        if text is None or text == "":
+            dispatcher.utter_message("Sorry, I couldn't find anything. Search for something else instead?")
+            return []
+
+        dispatcher.utter_message(text)
+        if image_link is not None and image_link != "":
+            dispatcher.utter_message("![testText](" + image_link + ")")
+        if link is not None and link != "":
+            dispatcher.utter_message("Here's a link if you want to know more: " + str(link))
+
         return []

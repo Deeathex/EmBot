@@ -145,3 +145,18 @@ nlu:
       - Good morning i need a [home health agency](facility_type) in [Clarksville](location)
       - Can you tell me a [nursing home](facility_type) in [Oklahoma City](location) ?
 
+  - intent: query_search
+    examples: |
+      - search for [puppies](query)
+      - search for [flower](query)
+      - search for [Abraham Lincoln](query)
+      - who is [Bill Gates](query)
+      - who is [Leonardo di Caprio](query)
+      - what is [pneumonia](query)
+      - what is [depression](query)
+      - what is a [flower](query)
+      - what is an [airplane](query)
+      - how do [people fly](query)
+      - how to [grow tomatoes in the garden](query)
+      - how to [play the guitar](query)
+      - how to [make a pizza](query)

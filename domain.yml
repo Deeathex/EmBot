@@ -6,9 +6,14 @@ intents:
   - add_feeling_message
   - find_what_bot_thinks
   - find_facility
+  - query_search
 
 slots:
   facility_type:
+    type: text
+    influence_conversation: false
+
+  query:
     type: text
     influence_conversation: false
 
@@ -43,6 +48,7 @@ actions:
   - action_add_feeling_message
   - action_check_mental_state_from_messages
   - action_facility_search
+  - action_search_keyword
 
 session_config:
   session_expiration_time: 60

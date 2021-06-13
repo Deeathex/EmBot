@@ -28,4 +28,12 @@ stories:
       - intent: find_facility
       - action: action_facility_search
 
+  - story: search for facility
+    steps:
+      - intent: greet
+      - action: utter_greet
+      - intent: query_search
+      - action: action_search_keyword
+
+
 

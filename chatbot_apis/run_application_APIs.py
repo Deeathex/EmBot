@@ -20,7 +20,6 @@ class Prediction(Resource):
         text=str(text)
         recommendation_based_on_mental_status = RecommendationBasedOnMentalState()
         recommendation = recommendation_based_on_mental_status.get_recommendation(text)
-        print(recommendation)
         return recommendation, 200  # return data and 200 OK code
 
 
@@ -31,10 +30,34 @@ class DuckDuckGo(Resource):
         response = requests.get(url).json()
         print(response)
 
+        text = response['AbstractText']
+        image = response['Image']
+
+        try:
+            recommendation = response['RelatedTopics'][0]['FirstURL']
+            if text is None or text == "":
+                text = response['RelatedTopics'][0]['Text']
+            if image is None or image == "":
+                image = response['RelatedTopics'][0]['Icon']['URL']
+        except:
+            try:
+                recommendation = response['RelatedTopics'][0]['Topics'][0]['FirstURL']
+                if text is None or text == "":
+                    text = response['RelatedTopics'][0]['Topics'][0]['Text']
+                if image is None or image == "":
+                    image = response['RelatedTopics'][0]['Topics'][0]['Icon']['URL']
+            except:
+                recommendation = ""
+                text = ""
+                image = ""
+
+        if image is not None and image != "":
+            image = "https://duckduckgo.com" + image
+
         data = {
-            'text': response['Abstract'],
-            'image': 'https://duckduckgo.com/' + response['Image'],
-            'recommendation': response['RelatedTopics'][0]['FirstURL']
+            'text': text,
+            'image': image,
+            'recommendation': recommendation,
         }
         return data, 200
 
@@ -72,9 +95,21 @@ class FacilityFinder(Resource):
         return data, 200
 
 
+class PostCancerPractices(Resource):
+    def get(self):
+        cancer_type = request.args.get('cancer_type')
+        # url = "https://api.duckduckgo.com/?q=" + query + "&format=json"
+        # response = requests.get(url).json()
+
+        data = {
+        }
+        return data, 200
+
+
 api.add_resource(Prediction, '/prediction')
 api.add_resource(DuckDuckGo, '/search')
 api.add_resource(FacilityFinder, '/facility')
+api.add_resource(PostCancerPractices, '/practices')
 
 if __name__ == '__main__':
     app.run(host='127.0.0.1', port=5000)
