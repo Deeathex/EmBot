@@ -10,6 +10,7 @@ from sentiment_analysis.utils.Utils import Utils
 from sentiment_analysis.utils.constants import NUM_WORDS_VOCABULARY, MAXLEN, CARER_DATASET, MODEL_FILENAME
 import os
 
+
 class EmotionClassifier:
     def __init__(self, path_to_model):
         os.chdir('D:/Tot/UBB/SDI/Semestrul_4/Disertatie/Parte practica/Embot_nlp_backend/sentiment_analysis/resources/saved_model')
@@ -19,19 +20,13 @@ class EmotionClassifier:
         self.__train_df = Utils.load_data_frame(path=CARER_DATASET + '/train.txt', separator='|')
         self.__tokenizer.fit_on_texts(self.__train_df.sentence.values)
 
-    def __get_key(self, value):
-        for key, val in self.__labeled_dict.items():
-            if (val == value):
-                return key
-
     def predict(self, sentence):
         sentence = sentence.lower()
         sentence = NLPModule.remove_punctuation(sentence)
         sentence = NLPModule.decontracted(sentence)
         NLPModule.lemmatize_sentence(sentence, WordNetLemmatizer())
 
-        sentence_lst = []
-        sentence_lst.append(sentence)
+        sentence_lst = [sentence]
         sentence_seq = self.__tokenizer.texts_to_sequences(sentence_lst)
         sentence_padded = pad_sequences(sentence_seq, maxlen=MAXLEN, padding='post')
         predicted_value = self.__classifier.predict_classes(sentence_padded)
@@ -39,3 +34,8 @@ class EmotionClassifier:
         print('For sentence: ', sentence)
         print('The emotion predicted is', ans)
         return ans
+
+    def __get_key(self, value):
+        for key, val in self.__labeled_dict.items():
+            if val == value:
+                return key

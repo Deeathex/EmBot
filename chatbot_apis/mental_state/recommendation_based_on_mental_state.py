@@ -2,6 +2,9 @@ from chatbot_apis.mental_state.mental_status_prediction import MentalStatusPredi
 
 from random import randrange
 
+RECOMMENDATION = 'recommendation'
+MENTAL_STATE = 'mental_state'
+
 
 class RecommendationBasedOnMentalState:
     def __init__(self):
@@ -33,8 +36,8 @@ class RecommendationBasedOnMentalState:
     def get_recommendation(self, text):
         mental_state = MentalStatusPredictor.run(text)
         data = {
-            'mental_state': mental_state,
-            'recommendation': self.__get_random_answer(self.recommendations_by_mental_status[mental_state])
+            MENTAL_STATE: mental_state,
+            RECOMMENDATION: self.__get_random_answer(self.recommendations_by_mental_status[mental_state])
         }
         return data
 
