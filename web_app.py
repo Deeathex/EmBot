@@ -1,11 +1,5 @@
 from flask import Flask
-from flask import render_template, jsonify, request
-import requests
-from urllib.request import urlopen
-import json
-from models import *
-
-import random
+from flask import render_template
 
 app = Flask(__name__)
 

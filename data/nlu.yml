@@ -70,12 +70,12 @@ nlu:
   - intent: find_what_bot_thinks
     examples: |
       - what do you think
-      - what to do?
+      - what to do
       - what's your opinion
       - any opinion about this
-      - any thoughts?
-      - what would you suggest?
-      - what's your suggestion?
+      - any thoughts
+      - what would you suggest
+      - what's your suggestion
 
 
   - intent: find_facility
@@ -84,6 +84,7 @@ nlu:
       - find me a nearby [hospital](facility_type)
       - show me [hospitals](facility_type)
       - [hospital](facility_type)
+      - [pharmacy](facility_type)
       - find me a nearby [hospital](facility_type) my zip code is [10119](location)
       - i need a [home health agency](facility_type)
       - find me a nearby [home health agency](facility_type)
@@ -144,7 +145,13 @@ nlu:
       - Good morning i need a [nursing home](facility_type) in [Katy](location)
       - Good morning i need a [hospital](facility_type) in [Waco](location)
       - Good morning i need a [home health agency](facility_type) in [Clarksville](location)
-      - Can you tell me a [nursing home](facility_type) in [Oklahoma City](location) ?
+      - Can you tell me a [nursing home](facility_type) in [Oklahoma City](location)
+      - where can I find a [pharmacy](facility_type)
+      - where is the [pharmacy](facility_type)
+      - where is the nearest [pharmacy](facility_type)
+      - where can I find a [hospital](facility_type)
+      - where is the [hospital](facility_type)
+      - where is the nearest [hospital](facility_type)
 
   - intent: query_search
     examples: |
@@ -156,6 +163,7 @@ nlu:
       - who is [Leonardo di Caprio](query)
       - what is [pneumonia](query)
       - what is [depression](query)
+      - what is [cancer](query)
       - what is a [flower](query)
       - what is an [airplane](query)
       - what are [postcancer practices](query)
