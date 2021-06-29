@@ -8,6 +8,8 @@ intents:
   - find_facility
   - query_search
   - post_cancer_practices
+  - found_about_cancer
+  - suicidal_thoughts
   - smalltalk_agent_acquaintance
   - smalltalk_agent_age
   - smalltalk_agent_annoying
@@ -128,6 +130,12 @@ responses:
 
   utter_how_did_you_feel_lately:
     - text: "How did you feel lately?"
+
+  utter_be_supportive:
+    - text: "I am very sorry to hear about this, but I'm here for you and we'll try to get through it."
+
+  utter_be_supportive_suicidal:
+    - text: "I can’t imagine how painful this is for you, but for every problem there is a solution to be tried out. I am sure that there still are things on your bucket list you didn't manage to do, but that would make you happier."
 
   utter_smalltalk_agent_acquaintance:
     - text: "I'm a conversational app."

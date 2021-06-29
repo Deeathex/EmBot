@@ -77,6 +77,29 @@ nlu:
       - what would you suggest
       - what's your suggestion
 
+  - intent: suicidal_thoughts
+    examples: |
+      - I want to kill myself
+      - I have suicidal thoughts
+      - I will end my life
+      - I want to end my life
+      - I am thinking about killing myself very often
+      - I want to die
+      - I am willing to die
+      - I'd rather die than going through cancer
+      - What’s the point in living
+      - Nobody cares about me. Nobody will notice if I die.
+      - No one cares if I fie
+      - I am useless, I'd rather die
+
+  - intent: found_about_cancer
+    examples: |
+      - I have cancer
+      - I just found I have cancer and I don't know what to do
+      - what to do if I just found I have cancer
+      - omg, I just found I have cancer
+      - I have cancer and I am goind to die
+      - I will die because of cancer
 
   - intent: find_facility
     examples: |
@@ -175,7 +198,6 @@ nlu:
       - how to [grow tomatoes in the garden](query)
       - how to [play the guitar](query)
       - how to [make a pizza](query)
-
 
   - intent: post_cancer_practices
     examples: |

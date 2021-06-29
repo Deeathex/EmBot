@@ -28,7 +28,7 @@ stories:
       - intent: find_facility
       - action: action_facility_search
 
-  - story: search for facility
+  - story: search for keyword
     steps:
       - intent: query_search
       - action: action_search_keyword
@@ -37,6 +37,16 @@ stories:
     steps:
       - intent: post_cancer_practices
       - action: action_post_cancer_practices
+
+  - story: found cancer be supportive
+    steps:
+      - intent: found_about_cancer
+      - action: utter_be_supportive
+
+  - story: suicidal thoughts be supportive
+    steps:
+      - intent: suicidal_thoughts
+      - action: utter_be_supportive_suicidal
 
   - story: path_smalltalk_agent_acquaintance
     steps:

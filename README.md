@@ -17,7 +17,7 @@ rasa shell nlu
 Run with interface:  
 - run the following commands:
 ```
-rasa actions
+rasa run actions
 rasa run --credentials ./credentials.yml  --enable-api --auth-token XYZ123 --model ./models --endpoints ./endpoints.yml --cors "*"
 ```
 - run chatbot_apis/run_application_APIs.py  
